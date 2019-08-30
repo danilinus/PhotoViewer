@@ -1,0 +1,15 @@
+D:\Projects\PhotoViewer\PhotoViewer\bin\Debug\PhotoViewer.exe.config
+D:\Projects\PhotoViewer\PhotoViewer\bin\Debug\PhotoViewer.exe
+D:\Projects\PhotoViewer\PhotoViewer\bin\Debug\PhotoViewer.pdb
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\MainWindow.g.cs
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\App.g.cs
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer_MarkupCompile.cache
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer_MarkupCompile.lref
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\MainWindow.baml
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.g.resources
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.Properties.Resources.resources
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.csproj.GenerateResource.cache
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.csproj.CoreCompileInputs.cache
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.exe
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.pdb
+D:\Projects\PhotoViewer\PhotoViewer\obj\Debug\PhotoViewer.csprojAssemblyReference.cache
