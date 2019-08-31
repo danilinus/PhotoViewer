@@ -78,36 +78,25 @@ namespace PhotoViewer
 			{
 				while (IsKeyDown(WinForms.Keys.LButton))
 				{
-					switch (grab)
+					Dispatcher.Invoke(() =>
 					{
-						case MouseGrab.Move:
-							Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)Width, (int)Height, true));
-							break;
-						case MouseGrab.RightBottom:
-							if (IsKeyDown(WinForms.Keys.ShiftKey))
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)WinPosition.X, (int)(WinPosition.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), (int)(WinSize.Y + GetMousePosition().Y - offset.Y), true));
-							else
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)WinPosition.X, (int)(WinPosition.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), (int)((WinSize.X + GetMousePosition().X - offset.X) / image.Width * image.Height), true));
-							break;
-						case MouseGrab.RightTop:
-							if (IsKeyDown(WinForms.Keys.ShiftKey))
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)WinPosition.X, (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), (int)(WinSize.Y - GetMousePosition().Y + offset.Y), true));
-							else
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)WinPosition.X, (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), (int)((WinSize.X + GetMousePosition().X - offset.X) / image.Width * image.Height), true));
-							break;
-						case MouseGrab.LeftTop:
-							if (IsKeyDown(WinForms.Keys.ShiftKey))
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)(WinSize.X - GetMousePosition().X + offset.X), (int)(WinSize.Y - GetMousePosition().Y + offset.Y), true));
-							else
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)(WinSize.X - GetMousePosition().X + offset.X), (int)((WinSize.X - GetMousePosition().X + offset.X) / image.Width * image.Height), true));
-							break;
-						case MouseGrab.LeftBottom:
-							if (IsKeyDown(WinForms.Keys.ShiftKey))
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y), (int)(WinSize.X - GetMousePosition().X + offset.X), (int)(WinSize.Y + GetMousePosition().Y - offset.Y), true));
-							else
-								Dispatcher.Invoke(() => MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y), (int)(WinSize.X - GetMousePosition().X + offset.X), (int)((WinSize.X - GetMousePosition().X + offset.X) / image.Width * image.Height), true));
-							break;
-					}
+						switch (grab)
+						{
+							case MouseGrab.Move:
+								MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y + GetMousePosition().Y - offset.Y), (int)Width, (int)Height, true);
+								break;
+							case MouseGrab.LeftTop:
+							case MouseGrab.RightBottom:
+								MoveWindow(GetForegroundWindow(), (int)WinPosition.X, (int)(WinPosition.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), IsKeyDown(WinForms.Keys.ShiftKey) ? (int)(WinSize.Y + GetMousePosition().Y - offset.Y) : (int)((WinSize.X + GetMousePosition().X - offset.X) / image.Width * image.Height), true);
+								break;
+							case MouseGrab.RightTop:
+								MoveWindow(GetForegroundWindow(), (int)WinPosition.X, IsKeyDown(WinForms.Keys.ShiftKey) ? (int)(WinPosition.Y + GetMousePosition().Y - offset.Y) : (int)(WinPosition.Y), (int)(WinSize.X + GetMousePosition().X - offset.X), IsKeyDown(WinForms.Keys.ShiftKey) ? (int)(WinSize.Y - GetMousePosition().Y + offset.Y) : (int)((WinSize.X + GetMousePosition().X - offset.X) / image.Width * image.Height), true);
+								break;
+							case MouseGrab.LeftBottom:
+								MoveWindow(GetForegroundWindow(), (int)(WinPosition.X + GetMousePosition().X - offset.X), (int)(WinPosition.Y), (int)(WinSize.X - GetMousePosition().X + offset.X), IsKeyDown(WinForms.Keys.ShiftKey) ? (int)(WinSize.Y + GetMousePosition().Y - offset.Y) : (int)((WinSize.X - GetMousePosition().X + offset.X) / image.Width * image.Height), true);
+								break;
+						}
+					});
 					Thread.Sleep(3);
 				}
 				grab = MouseGrab.None;
