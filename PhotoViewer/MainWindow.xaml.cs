@@ -114,8 +114,12 @@ namespace PhotoViewer
 			}).Start();
 		}
 
+		private double Distance(Point from, Point to) => Math.Sqrt(Math.Pow(from.X - to.X, 2) + Math.Pow(from.Y - to.Y, 2));
+
 		private void Window_MouseMove(object sender, MouseEventArgs e)
 		{
+			CloseButton.Opacity = TurnButton.Opacity = 1 - Distance(e.GetPosition(CloseButton), new Point(CloseButton.Margin.Left, CloseButton.Margin.Top)) / 300f;
+
 			if (e.GetPosition(this).X < 10 && e.GetPosition(this).Y < 10)
 				Cursor = Cursors.SizeNWSE;
 			else
@@ -164,6 +168,17 @@ namespace PhotoViewer
 		}
 
 		public static bool IsKeyDown(WinForms.Keys key) => KeyStates.Down == (GetKeyState(key) & KeyStates.Down);
+
+		private void Window_MouseLeave(object sender, MouseEventArgs e) => CloseButton.Opacity = TurnButton.Opacity = 0;
+
+		private void Window_KeyUp(object sender, KeyEventArgs e)
+		{
+			if(e.Key == Key.OemPlus)
+				Opacity += Opacity < 0.9f ? 0.1f : 1f - Opacity;
+			else
+			if (e.Key == Key.OemMinus)
+				Opacity -= Opacity > 0.1f ? 0.1f : 0;
+		}
 
 		public static bool IsKeyToggled(WinForms.Keys key) => KeyStates.Toggled == (GetKeyState(key) & KeyStates.Toggled);
 

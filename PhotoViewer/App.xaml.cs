@@ -9,7 +9,7 @@ namespace PhotoViewer
 			if (e.Args.Length > 0)
 				new MainWindow(e.Args[0]).Show();
 			else
-				Shutdown();
+				new MainWindow(@"C:\Users\danil\Desktop\Ogurets.jpg").Show();
 		}
 	}
 }
